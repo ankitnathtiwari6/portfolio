@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
-    <div className="max-w-3xl space-y-8">
+    <div className="max-w-3xl space-y-8 mt-32">
       <h1 className="text-6xl font-serif">
         I am a
         <br />

@@ -2,7 +2,7 @@ import React from "react";
 
 function AboutPage() {
   return (
-    <div className="max-w-3xl space-y-8">
+    <div className="max-w-4xl space-y-8 mt-32">
       <h1 className="text-4xl font-serif mb-8">About Me</h1>
 
       <div className="space-y-6">

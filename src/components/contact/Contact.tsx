@@ -2,7 +2,7 @@ import React from "react";
 
 function ContactPage() {
   return (
-    <div className="max-w-4xl">
+    <div className="max-w-4xl mt-32">
       <h1 className="text-4xl font-serif mb-12">Contact</h1>
 
       <div className="space-y-8">

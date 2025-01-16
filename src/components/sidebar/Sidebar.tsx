@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-
+import profileImage from "./profileImage.jpeg";
 const menuItems = [
   { title: "HOME", href: "/" },
   { title: "ABOUT", href: "/about" },
@@ -17,6 +17,14 @@ function Sidebar() {
     <aside className="fixed left-0 top-0 h-screen w-[250px] border-r bg-white p-8 flex flex-col">
       <div className="flex flex-col items-center text-center mb-12">
         <div className="w-32 h-32 rounded-full bg-gray-200 mb-4"></div>
+
+        {/* <div className="w-32 h-32 relative mb-4">
+          <img
+            src={profileImage}
+            alt="Ankit Nath Tiwari"
+            className="absolute inset-0 w-full h-full object-cover rounded-full"
+          />
+        </div> */}
         <h1 className="font-bold text-xl mb-1">Ankit Nath Tiwari</h1>
         <p className="text-sm text-gray-600">FULL STACK DEVELOPER</p>
         <p className="text-sm text-gray-600">IN NEW DELHI</p>
