@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Sidebar from "./components/sidebar/Sidebar.tsx";
 import { Home } from "./components/home-page/HomePage.tsx";
 import AboutPage from "./components/about/about.tsx";
