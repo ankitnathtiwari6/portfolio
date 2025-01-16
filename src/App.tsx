@@ -15,12 +15,12 @@ function App() {
         <Sidebar />
         <main className="flex-1 ml-[250px] p-12">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/skills" element={<SkillsPage />} />
-            <Route path="/experience" element={<ExperiencePage />} />
-            <Route path="/education" element={<EducationPage />} />
-            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/portfolio/" element={<Home />} />
+            <Route path="/portfolio/about" element={<AboutPage />} />
+            <Route path="/portfolio/skills" element={<SkillsPage />} />
+            <Route path="/portfolio/experience" element={<ExperiencePage />} />
+            <Route path="/portfolio/education" element={<EducationPage />} />
+            <Route path="/portfolio/contact" element={<ContactPage />} />
           </Routes>
         </main>
       </div>
