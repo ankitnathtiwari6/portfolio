@@ -1,429 +1,361 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-const Experience = () => {
-  const [activeTab, setActiveTab] = useState("pesto");
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+const experiences = [
+  {
+    id: "wing",
+    company: "Wing Assistant",
+    subtitle: "M32 Labs Team",
+    logo: "WA",
+    role: "Software Engineer",
+    period: "MAR 2025 – PRESENT",
+    current: true,
+    color: "#00f5ff",
+    description: "Wing Assistant is a US-based staffing company. Built an internal AI hiring platform that fully automates the end-to-end recruitment workflow — processing thousands of resumes daily and replacing manual screening, scheduling, and candidate evaluation with AI agents.",
+    projects: [
+      {
+        title: "AI Recruiter — Intelligent Hiring Automation",
+        icon: "🤖",
+        description:
+          "Built a full-stack AI recruiter platform (React, Node.js, MongoDB) that manages the entire hiring pipeline: posting jobs, screening applicants, shortlisting candidates, dispatching AI interviews, analysing results, and presenting a final ranked shortlist — all automated.",
+        technologies: ["React", "Node.js", "MongoDB", "OpenAI", "Pinecone", "Lever ATS"],
+        achievements: [
+          "Integrated with Lever ATS — job postings sync live, recruiters auto-assigned the moment a requisition goes live",
+          "Built semantic search with OpenAI embeddings + Pinecone so recruiters find candidates via plain English",
+          "System proactively suggests best-matched candidates using vector similarity scoring",
+          "Full recruiter dashboard: application volume → interview status → final shortlist in one place",
+        ],
+      },
+      {
+        title: "Voice-to-Voice AI Interview Agent",
+        icon: "🎙️",
+        description:
+          "Built a fully automated voice interview agent using LiveKit, TTS, STT, WebRTC, and GPT-4 that conducts real, conversational interviews with candidates at sub-500ms latency — no human needed.",
+        technologies: ["LiveKit", "WebRTC", "GPT-4", "TTS/STT", "Node.js", "WebSockets"],
+        achievements: [
+          "Adaptive LLM pipeline generates dynamic follow-up questions based on each candidate's previous answer",
+          "Interview agent triggered automatically by AI Recruiter once a candidate is shortlisted — zero-touch pipeline",
+          "Post-interview: auto-generates structured evaluation with scores, insights, strengths, red flags & hire/no-hire recommendation",
+          "Sub-500ms end-to-end voice latency in production",
+        ],
+      },
+    ],
+  },
+  {
+    id: "pesto",
+    company: "Pesto Tech",
+    logo: "PT",
+    role: "Full Stack Developer",
+    period: "FEB 2022 – FEB 2025",
+    color: "#a855f7",
+    projects: [
+      {
+        title: "AI Interview Platform",
+        icon: "🎥",
+        description:
+          "Built the full-stack platform for automated video and coding interview evaluation. Integrated GPT-4 for evaluating candidate answers, generating scores, and producing structured feedback reports automatically.",
+        technologies: ["React", "TypeScript", "Tailwind", "Node.js", "MongoDB", "GCP", "OpenAI"],
+        achievements: [
+          "Scaled from 100 → thousands of interviews/month",
+          "Deployed on GCP with Cloud Storage for video assets",
+        ],
+        deployment: "Google Cloud Platform",
+      },
+      {
+        title: "AI Hiring Platform",
+        icon: "🔍",
+        description:
+          "Built an end-to-end AI recruitment platform. Used text embeddings to represent job descriptions and candidate profiles in vector space for high-accuracy similarity matching.",
+        technologies: ["React", "Node.js", "OpenAI", "Pinecone", "Firebase", "Docker", "Kubernetes"],
+        achievements: [
+          "Reduced time-to-hire by 50%+",
+          "Secured with Firebase Auth + JWT; deployed on GCP with Kubernetes",
+        ],
+        deployment: "GCP with Kubernetes",
+      },
+      {
+        title: "Developer Onboarding Platform",
+        icon: "👨‍💻",
+        description:
+          "Built an AI-powered onboarding platform that auto-parses resumes using OpenAI and generates structured developer profiles. Used LLM function calling to extract skills, experience, and project details from unstructured resume text.",
+        technologies: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "OpenAI"],
+        achievements: [
+          "Reduced onboarding time by 80%, increased signup conversion 3×",
+          "Profile creation: 2+ hours → 10 minutes",
+        ],
+      },
+      {
+        title: "Mentor Portal + LMS",
+        icon: "🧠",
+        description:
+          "Built a mentor management platform (Svelte, Node.js, PostgreSQL, GraphQL) for session tracking, feedback, and payment automation. Also built an LMS for live mentor sessions with React + TypeScript and REST APIs.",
+        technologies: ["Svelte", "React", "TypeScript", "Node.js", "PostgreSQL", "GraphQL", "MongoDB"],
+        achievements: [
+          "Session coordination: 2–3 days → 5–10 minutes — doubled team productivity",
+          "Session tracking and payment time reduced by 80%",
+        ],
+      },
+    ],
+  },
+  {
+    id: "indus",
+    company: "Indus OS (PhonePe)",
+    logo: "IO",
+    role: "Software Engineer",
+    period: "SEP 2021 – FEB 2022",
+    color: "#10b981",
+    description: [
+      "Enhanced the Developer Console for App Bazar's marketplace — built APK upload feature and resolved critical production bugs (AngularJS, Node.js, MongoDB).",
+      "Integrated CMS portal with Developer Console; implemented AWS S3 for scalable media storage and efficient content delivery.",
+      "Implemented authentication and role-based authorization using JWT tokens.",
+      "Optimized MongoDB queries through indexing — significantly improved page load times.",
+    ],
+    technologies: ["AngularJS", "Node.js", "MongoDB", "AWS S3", "JWT"],
+  },
+  {
+    id: "newsbird",
+    company: "Newsbird",
+    logo: "NB",
+    role: "Software Engineer",
+    period: "JUN 2019 – AUG 2021",
+    color: "#f97316",
+    projects: [
+      {
+        title: "News Application",
+        icon: "📰",
+        description:
+          "Built a full-featured news platform (newsbird.live) with categorized feeds, short-form videos, and dedicated portals for users and reporters. Full MERN stack on AWS with JWT auth, RBAC, and real-time notifications. Designed all UI/UX in Figma before development.",
+        technologies: ["React", "Express", "MongoDB", "AWS S3", "JWT"],
+        achievements: ["Designed in Figma and developed end-to-end"],
+      },
+      {
+        title: "Learning Management System",
+        icon: "🧠",
+        description:
+          "LMS for seamless mentor session coordination — scheduling, live sessions, and learning material distribution.",
+        technologies: ["React", "TypeScript", "Node.js", "MongoDB", "REST APIs"],
+        achievements: [
+          "Session coordination: 2–3 days → 5–10 minutes",
+          "Doubled program team productivity",
+        ],
+      },
+      {
+        title: "Mentor Portal",
+        icon: "👨‍🏫",
+        description:
+          "Mentor management platform for session tracking, feedback collection, timesheet generation, and payment automation.",
+        technologies: ["Svelte", "Node.js", "PostgreSQL", "GraphQL"],
+        achievements: ["Session tracking and payment time reduced by 80%"],
+      },
+    ],
+  },
+  {
+    id: "ihmcl",
+    company: "IHMCL (NHAI)",
+    logo: "IH",
+    role: "Engineer",
+    period: "NOV 2016 – NOV 2018",
+    color: "#64748b",
+    description: [
+      "Key representative from IHMCL for implementing Hybrid ETC systems at 100+ national highway toll plazas.",
+      "Led project planning for highway amenities: financial analysis reports, architectural drawings, cost estimations, feasibility assessments, and contract documentation.",
+    ],
+    technologies: ["Project Management", "Financial Analysis", "ETC Systems"],
+  },
+  {
+    id: "capricot",
+    company: "Capricot Technology",
+    logo: "CT",
+    role: "GIS Engineer",
+    period: "NOV 2015 – NOV 2016",
+    color: "#64748b",
+    description: [
+      "Developed GIS applications for Rajasthan state government and NHAI.",
+    ],
+    technologies: ["GIS", "Mapping Software"],
+  },
+];
 
-  // Handle window resize for responsive design
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+const Experience: React.FC = () => {
+  const [active, setActive] = useState("wing");
+  const [fading, setFading] = useState(false);
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Handle smooth transition between tabs
-  const handleTabChange = (tabId) => {
-    if (tabId === activeTab) return;
-
-    setIsAnimating(true);
-    setTimeout(() => {
-      setActiveTab(tabId);
-      setIsAnimating(false);
-    }, 300);
+  const switchTab = (id: string) => {
+    if (id === active) return;
+    setFading(true);
+    setTimeout(() => { setActive(id); setFading(false); }, 250);
   };
 
-  const experiences = [
-    {
-      id: "pesto",
-      company: "Pesto Tech",
-      logo: "P",
-      role: "Full Stack Developer",
-      period: "FEB 2022 - PRESENT",
-      projects: [
-        {
-          title: "AI Interview Platform",
-          description:
-            "Developed an AI-driven interview platform for automated video and coding session evaluations, streamlining the hiring process.",
-          technologies: [
-            "React",
-            "TypeScript",
-            "Tailwind CSS",
-            "Node.js",
-            "MongoDB",
-            "GCP Cloud Storage",
-            "OpenAI",
-          ],
-          achievements: [
-            "Increased interview capacity from just 100 interviews per month to thousands.",
-          ],
-          deployment: "Google Cloud Platform (GCP)",
-          icon: "🎥",
-        },
-        {
-          title: "AI Hiring Platform",
-          description:
-            "Developed an AI-powered recruitment platform for efficient talent matching, enabling hiring teams to collaborate, apply advanced filters, and identify ideal candidates using AI-driven recommendations.",
-          technologies: [
-            "React",
-            "Node.js",
-            "OpenAI",
-            "Pinecone",
-            "Firebase Authentication",
-            "JWT",
-            "Google Sign-In",
-            "Docker",
-            "Kubernetes",
-          ],
-          achievements: ["Reduced time-to-hire by more than 50%."],
-          deployment: "GCP with Kubernetes",
-          icon: "🔍",
-        },
-        {
-          title: "Developer Platform",
-          description:
-            "Built an AI-powered platform for seamless developer onboarding with automated profile creation, intelligent resume parsing.",
-          technologies: [
-            "React",
-            "TypeScript",
-            "Node.js",
-            "Express",
-            "MongoDB",
-            "OpenAI",
-          ],
-          achievements: [
-            "Reduced developer onboarding time by 80%",
-            "Simplified the signup process",
-            "Increased onboarding rates by 3x",
-            "Reduced profile creation time from more than 2 hours to just 10 minutes",
-          ],
-          deployment: "Cloud deployment",
-          icon: "👨‍💻",
-        },
-      ],
-    },
-    {
-      id: "indus",
-      company: "Indus OS (PhonePe)",
-      logo: "IO",
-      role: "Software Engineer",
-      period: "SEP 2021 - FEB 2022",
-      description: [
-        "Enhanced the Developer Console for App Bazar's marketplace by developing the APK upload feature and resolving critical bugs. Utilized Angularjs for the frontend, Node.js for the backend, and MongoDB for efficient data management.",
-        "Integrated CMS portal with Developer Console, implementing AWS S3 for scalable media storage and efficient content delivery.",
-        "Implemented authentication and role-based authorization using JWT tokens.",
-        "Optimized database queries through indexing, significantly improving load times and enhancing developer experience.",
-      ],
-      technologies: ["Angularjs", "Node.js", "MongoDB", "AWS S3", "JWT"],
-    },
-    {
-      id: "newsbird",
-      company: "Newsbird",
-      logo: "NB",
-      role: "Software Engineer",
-      period: "JUNE 2019 - AUG 2021",
-      projects: [
-        {
-          title: "News Application",
-          description:
-            "Created a news platform with categorized browsing, short-form videos, and personalized notifications, dedicated portals for users and reporters.",
-          technologies: ["React", "Express", "MongoDB", "AWS S3", "JWT"],
-          achievements: [
-            "Designed with Figma and developed full-stack application",
-          ],
-          extra: "newsbird.live, reporters.newsbird.live",
-          icon: "📰",
-        },
-        {
-          title: "Mentor Portal",
-          description:
-            "Built a mentor management platform to streamline session tracking, feedback, and payments.",
-          technologies: ["Svelte", "Node.js", "PostgreSQL", "GraphQL"],
-          achievements: [
-            "Reduced session tracking and payment time by 80%, boosting efficiency.",
-          ],
-          icon: "👨‍🏫",
-        },
-        {
-          title: "LMS (Learning Management System)",
-          description:
-            "Developed a LMS for seamless mentor session coordination, enabling students to schedule, manage, and attend live sessions while accessing educational resources.",
-          technologies: [
-            "React",
-            "TypeScript",
-            "Node.js",
-            "MongoDB",
-            "REST APIs",
-          ],
-          achievements: [
-            "Doubled program team productivity",
-            "Reduced session coordination time from 2-3 days to just 5-10 minutes",
-          ],
-          icon: "🧠",
-        },
-      ],
-    },
-  ];
-
-  const renderTechStack = (technologies) => {
-    return (
-      <div className="flex flex-wrap gap-2 mt-3">
-        {technologies.map((tech, index) => (
-          <span
-            key={index}
-            className="px-3 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-    );
-  };
-
-  const renderAchievements = (achievements) => {
-    return (
-      <ul className="mt-3 space-y-2">
-        {achievements.map((achievement, index) => (
-          <li key={index} className="flex items-start">
-            <span className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 mr-2 bg-green-100 rounded-full text-green-600">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-3.5 h-3.5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
-            <span className="text-gray-700">{achievement}</span>
-          </li>
-        ))}
-      </ul>
-    );
-  };
-
-  const isMobile = windowWidth < 768;
+  const exp = experiences.find((e) => e.id === active)!;
 
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 relative inline-block">
-            Work Experience
-          </h2>
-          <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-            Building innovative solutions with cutting-edge technologies to
-            solve complex problems and deliver exceptional user experiences.
-          </p>
+    <div className="max-w-5xl mx-auto space-y-8">
+
+      {/* Header */}
+      <div>
+        <div className="flex items-center gap-3 mb-2">
+          <div className="section-bar h-8" />
+          <p className="text-xs font-mono text-cyan-400 tracking-widest">{"// WORK EXPERIENCE"}</p>
+        </div>
+        <h1 className="text-4xl sm:text-5xl font-bold">
+          <span className="gradient-text">Experience</span>
+        </h1>
+        <p className="text-slate-400 mt-2">6+ years shipping AI-powered products, from voice agents to hiring automation platforms.</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-6">
+
+        {/* Company selector */}
+        <div className="md:col-span-2">
+          <div className="glass rounded-2xl overflow-hidden">
+            <div className="p-4 border-b border-slate-800">
+              <p className="text-xs font-mono text-slate-500 tracking-wider">COMPANIES</p>
+            </div>
+            <div className="divide-y divide-slate-800/50">
+              {experiences.map((e) => (
+                <button
+                  key={e.id}
+                  onClick={() => switchTab(e.id)}
+                  className={`w-full p-4 text-left transition-all flex items-center gap-3 hover:bg-slate-800/30 ${
+                    active === e.id ? "bg-cyan-500/5 border-l-2 border-l-cyan-400" : "border-l-2 border-l-transparent"
+                  }`}
+                >
+                  <div
+                    className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+                    style={{ background: `linear-gradient(135deg, ${e.color}40, ${e.color}20)`, border: `1px solid ${e.color}40` }}
+                  >
+                    <span style={{ color: e.color }}>{e.logo}</span>
+                  </div>
+                  <div className="min-w-0">
+                    <div className={`text-sm font-medium truncate ${active === e.id ? "text-cyan-400" : "text-slate-300"}`}>
+                      {e.company}
+                    </div>
+                    <div className="text-xs text-slate-600 font-mono mt-0.5">{e.period.split("–")[0].trim()}</div>
+                  </div>
+                  {e.current && (
+                    <span className="ml-auto w-2 h-2 bg-green-400 rounded-full flex-shrink-0 animate-pulse" />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-7 gap-6 mb-8">
-          {/* Sidebar for larger screens */}
-          {!isMobile && (
-            <div className="hidden md:block md:col-span-2">
-              <div className="bg-white rounded-xl shadow-md overflow-hidden sticky top-20">
-                <div className="p-4 bg-gradient-to-r from-indigo-600 to-blue-500 text-white">
-                  <h3 className="font-semibold">Companies</h3>
+        {/* Content */}
+        <div className={`md:col-span-5 transition-opacity duration-250 ${fading ? "opacity-0" : "opacity-100"}`}>
+          <div className="glass rounded-2xl overflow-hidden">
+            {/* Header */}
+            <div
+              className="p-6"
+              style={{ background: `linear-gradient(135deg, ${exp.color}10, ${exp.color}05)`, borderBottom: `1px solid ${exp.color}25` }}
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h2 className="text-xl font-bold text-slate-100">{exp.company}</h2>
+                    {(exp as any).subtitle && (
+                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">
+                        {(exp as any).subtitle}
+                      </span>
+                    )}
+                    {exp.current && (
+                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-green-500/15 text-green-400 border border-green-500/30">
+                        current
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-slate-400 text-sm">{exp.role}</p>
                 </div>
-                <div className="divide-y">
-                  {experiences.map((exp) => (
-                    <button
-                      key={exp.id}
-                      onClick={() => handleTabChange(exp.id)}
-                      className={`w-full px-4 py-4 text-left transition-all flex items-center hover:bg-gray-50 ${
-                        activeTab === exp.id
-                          ? "bg-indigo-50 border-l-4 border-indigo-600"
-                          : ""
-                      }`}
+                <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-slate-800/60 text-slate-400 border border-slate-700 whitespace-nowrap self-start sm:self-auto">
+                  {exp.period}
+                </span>
+              </div>
+              {(exp as any).description && typeof (exp as any).description === "string" && (
+                <p className="text-slate-400 text-sm mt-3 italic">{(exp as any).description}</p>
+              )}
+            </div>
+
+            {/* Body */}
+            <div className="p-6">
+              {/* Bullet-point description (Indus, IHMCL, Capricot) */}
+              {(exp as any).description && Array.isArray((exp as any).description) && (
+                <div className="space-y-3 mb-6">
+                  {(exp as any).description.map((d: string, i: number) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div
+                        className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                        style={{ background: `${exp.color}20`, border: `1px solid ${exp.color}40` }}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                          className="w-3 h-3" style={{ color: exp.color }}>
+                          <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd"/>
+                        </svg>
+                      </div>
+                      <p className="text-slate-400 text-sm">{d}</p>
+                    </div>
+                  ))}
+                  {(exp as any).technologies && (
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {(exp as any).technologies.map((t: string) => (
+                        <span key={t} className="tech-tag text-xs font-mono px-2.5 py-1 rounded-lg">{t}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Project cards */}
+              {(exp as any).projects && (
+                <div className="space-y-5">
+                  {(exp as any).projects.map((proj: any, i: number) => (
+                    <div
+                      key={i}
+                      className="rounded-xl p-5 border card-hover transition-all"
+                      style={{ background: `${exp.color}06`, borderColor: `${exp.color}20` }}
                     >
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600 text-white flex items-center justify-center font-bold mr-3 flex-shrink-0">
-                        {exp.logo}
-                      </div>
-                      <div>
+                      <div className="flex items-start gap-3 mb-3">
                         <div
-                          className={`font-medium ${
-                            activeTab === exp.id
-                              ? "text-indigo-700"
-                              : "text-gray-800"
-                          }`}
+                          className="w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0"
+                          style={{ background: `${exp.color}15` }}
                         >
-                          {exp.company}
+                          {proj.icon}
                         </div>
-                        <div className="text-xs text-gray-500">
-                          {exp.period}
+                        <div>
+                          <h3 className="font-semibold text-slate-200">{proj.title}</h3>
+                          {proj.deployment && (
+                            <span className="text-xs font-mono text-slate-500">
+                              Deployed on {proj.deployment}
+                            </span>
+                          )}
                         </div>
                       </div>
-                    </button>
+
+                      <p className="text-slate-400 text-sm mb-3">{proj.description}</p>
+
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                        {proj.technologies.map((t: string) => (
+                          <span key={t} className="tech-tag text-xs font-mono px-2 py-0.5 rounded-md">{t}</span>
+                        ))}
+                      </div>
+
+                      {proj.achievements.length > 0 && (
+                        <ul className="space-y-1">
+                          {proj.achievements.map((a: string, j: number) => (
+                            <li key={j} className="flex items-center gap-2 text-xs text-slate-400">
+                              <span className="text-green-400">✓</span>
+                              {a}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          )}
-
-          {/* Tabs for mobile view */}
-          {isMobile && (
-            <div className="col-span-1 mb-4 overflow-x-auto scrollbar-hide">
-              <div className="flex space-x-2 pb-2">
-                {experiences.map((exp) => (
-                  <button
-                    key={exp.id}
-                    onClick={() => handleTabChange(exp.id)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex items-center ${
-                      activeTab === exp.id
-                        ? "bg-indigo-600 text-white shadow-md"
-                        : "bg-white text-gray-700 hover:bg-gray-100"
-                    }`}
-                  >
-                    <div
-                      className={`w-6 h-6 rounded-full ${
-                        activeTab === exp.id
-                          ? "bg-white text-indigo-600"
-                          : "bg-indigo-100 text-indigo-600"
-                      } flex items-center justify-center text-xs font-bold mr-2`}
-                    >
-                      {exp.logo}
-                    </div>
-                    <span>{exp.company}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Main content area */}
-          <div
-            className={`col-span-1 md:col-span-5 transition-opacity duration-300 ${
-              isAnimating ? "opacity-0" : "opacity-100"
-            }`}
-          >
-            {/* Experience Content */}
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              {experiences.map((experience) => (
-                <div
-                  key={experience.id}
-                  className={activeTab === experience.id ? "block" : "hidden"}
-                >
-                  <div className="p-6 bg-gradient-to-r from-indigo-600 to-blue-500 text-white">
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                      <div>
-                        <h3 className="text-xl font-bold">{experience.role}</h3>
-                        <p className="text-indigo-100">{experience.company}</p>
-                      </div>
-                      <span className="mt-2 md:mt-0 inline-block px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">
-                        {experience.period}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    {experience.description && (
-                      <div className="mb-8 space-y-4">
-                        {experience.description.map((desc, index) => (
-                          <div key={index} className="flex items-start">
-                            <div className="h-6 w-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-4 h-4"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                                />
-                              </svg>
-                            </div>
-                            <p className="text-gray-700">{desc}</p>
-                          </div>
-                        ))}
-                        {experience.technologies &&
-                          renderTechStack(experience.technologies)}
-                      </div>
-                    )}
-
-                    {experience.projects && (
-                      <div className="space-y-8">
-                        {experience.projects.map((project, index) => (
-                          <div
-                            key={index}
-                            className="bg-gray-50 p-5 rounded-xl border border-gray-100 hover:shadow-md transition-all duration-300"
-                          >
-                            <div className="flex items-start">
-                              <div className="flex-shrink-0 h-12 w-12 flex items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-md">
-                                <span className="text-xl">{project.icon}</span>
-                              </div>
-                              <div className="ml-4">
-                                <div className="flex flex-wrap items-center gap-2">
-                                  <h4 className="text-lg font-semibold text-gray-900">
-                                    {project.title}
-                                  </h4>
-                                  {project.extra && (
-                                    <span className="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">
-                                      {project.extra}
-                                    </span>
-                                  )}
-                                </div>
-                                <p className="mt-2 text-gray-700">
-                                  {project.description}
-                                </p>
-                                {renderTechStack(project.technologies)}
-                                {project.achievements &&
-                                  renderAchievements(project.achievements)}
-                                {project.deployment && (
-                                  <div className="mt-3 flex items-center">
-                                    <span className="text-gray-500 text-sm">
-                                      Deployed on:
-                                    </span>
-                                    <span className="ml-2 text-sm font-medium bg-gray-100 px-2 py-0.5 rounded-md text-gray-700">
-                                      {project.deployment}
-                                    </span>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
-
-        {/* Timeline section for mobile */}
-        {isMobile && (
-          <div className="mt-12 pt-12 border-t border-gray-200">
-            <h3 className="text-xl font-bold text-gray-800 mb-6">
-              Career Timeline
-            </h3>
-            <div className="relative">
-              <div className="absolute left-3.5 top-0 h-full w-0.5 bg-indigo-200"></div>
-
-              {experiences.map((exp, index) => (
-                <div key={exp.id} className="relative pl-12 pb-8">
-                  <div className="absolute left-0 top-0 w-7 h-7 rounded-full bg-indigo-600 text-white flex items-center justify-center z-10">
-                    <span className="text-xs font-bold">
-                      {experiences.length - index}
-                    </span>
-                  </div>
-                  <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-100">
-                    <div className="font-medium text-gray-900">
-                      {exp.company}
-                    </div>
-                    <div className="text-sm text-gray-600">{exp.role}</div>
-                    <div className="text-xs text-gray-500 mt-1">
-                      {exp.period}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -12,35 +12,25 @@ import SkillsPage from "./components/Skills.tsx";
 import ExperiencePage from "./components/Experience.tsx";
 import EducationPage from "./components/Education.tsx";
 import ContactPage from "./components/Contact.tsx";
+import ResumePage from "./components/ResumePage.tsx";
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check if mobile view on mount and window resize
   useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    // Initial check
-    checkIfMobile();
-
-    // Add event listener
-    window.addEventListener("resize", checkIfMobile);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("resize", checkIfMobile);
-    };
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
   }, []);
 
   return (
     <Router>
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen bg-[#020817] text-slate-200">
         <Sidebar />
         <main
-          className={`flex-1 transition-all duration-300 ${
-            isMobile ? "ml-0 p-6" : "ml-[250px] p-8 lg:p-12"
+          className={`flex-1 transition-all duration-300 ai-grid min-h-screen ${
+            isMobile ? "ml-0 pt-16 px-4 pb-8" : "ml-[260px] p-8 lg:p-12"
           }`}
         >
           <Routes>
@@ -50,6 +40,7 @@ function App() {
             <Route path="/experience" element={<ExperiencePage />} />
             <Route path="/education" element={<EducationPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/resume" element={<ResumePage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
