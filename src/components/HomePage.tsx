@@ -166,8 +166,8 @@ export const Home: React.FC = () => {
   const stats = [
     { value: "6+", label: "Years Exp" },
     { value: "1000s", label: "AI Interviews/day" },
-    { value: "3+", label: "AI Products" },
-    { value: "<400ms", label: "Voice Latency" },
+    { value: "10+", label: "AI Products" },
+    { value: "<400ms", label: "Voice Agent Latency" },
   ];
 
   const techBadges = [
