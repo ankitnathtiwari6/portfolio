@@ -167,7 +167,7 @@ export const Home: React.FC = () => {
     { value: "6+", label: "Years Exp" },
     { value: "1000s", label: "AI Interviews/day" },
     { value: "3+", label: "AI Products" },
-    { value: "<500ms", label: "Voice Latency" },
+    { value: "<400ms", label: "Voice Latency" },
   ];
 
   const techBadges = [
@@ -341,7 +341,7 @@ export const Home: React.FC = () => {
                   <p className="pl-4">
                     <span className="text-green-400">voiceLatency</span>
                     <span className="text-slate-400">:</span>{" "}
-                    <span className="text-cyan-400">"&lt;500ms"</span>
+                    <span className="text-cyan-400">"&lt;400ms"</span>
                   </p>
                   <p>
                     <span className="text-yellow-400">{"}"}</span>

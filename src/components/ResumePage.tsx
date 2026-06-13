@@ -215,7 +215,7 @@ const ResumePage: React.FC = () => (
                 </p>
                 <ul className="space-y-1 text-sm text-slate-400 print:text-gray-700">
                   {[
-                    "Built fully automated voice interview agent using LiveKit, TTS, STT, WebRTC, and GPT conducting real conversational interviews at sub-500ms latency — no human needed.",
+                    "Built fully automated voice interview agent using LiveKit, TTS, STT, WebRTC, and GPT conducting real conversational interviews at sub-400ms latency — no human needed.",
                     "Adaptive LLM pipeline generates dynamic follow-up questions in real time based on each candidate's previous answer — every interview is unique and context-aware.",
                     "Agent triggered automatically once a candidate is shortlisted — seamless zero-touch pipeline from application to evaluated interview.",
                     "Post-interview: auto-generates structured evaluation with scores, insights, strengths, red flags, and hire/no-hire recommendation.",
@@ -291,9 +291,8 @@ const ResumePage: React.FC = () => (
             </div>
             <ul className="space-y-1 text-sm text-slate-400 print:text-gray-700">
               {[
-                "Built full-featured news platform (newsbird.live): categorized feeds, short-form video, user and reporter portals. Full MERN stack on AWS with JWT auth and real-time notifications.",
-                "Built LMS reducing session coordination from 2–3 days to 5–10 minutes, doubling team productivity.",
-                "Built mentor portal with payment automation — reduced tracking time by 80% (Svelte, PostgreSQL, GraphQL).",
+                "Built a full-featured news platform (newsbird.live) with categorized feeds, short-form video, and portals for users and reporters. Full MERN stack on AWS with JWT auth, RBAC, and real-time notifications.",
+                "Delivered a secure, scalable platform — designed all UI/UX wireframes in Figma before development.",
               ].map((item, i) => (
                 <li key={i} className="flex gap-2">
                   <span className="mt-0.5 flex-shrink-0">•</span>

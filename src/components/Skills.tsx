@@ -9,6 +9,7 @@ const coreFrontend = [
   "Tailwind CSS",
   "Redux",
   "Svelte",
+  "AngularJS",
   "HTML / CSS",
   "Framer Motion",
 ];
@@ -16,6 +17,7 @@ const coreFrontend = [
 const coreBackend = [
   "Node.js",
   "Express.js",
+  "Django",
   "REST APIs",
   "GraphQL",
   "WebSockets",
@@ -34,6 +36,7 @@ const aiSkills: { name: string; tag: string }[] = [
   { name: "RAG Pipelines", tag: "Retrieval" },
   { name: "Embeddings", tag: "Semantic Search" },
   { name: "Prompt Engineering", tag: "LLM" },
+  { name: "Function Calling", tag: "LLM" },
   { name: "AI Agents", tag: "Autonomy" },
   { name: "Lever ATS", tag: "Integration" },
   { name: "Adaptive Pipelines", tag: "ML Ops" },
@@ -50,8 +53,10 @@ const infraSkills = [
   { name: "Firebase", color: "#FFCA28" },
   { name: "Socket.io", color: "#00f5ff" },
   { name: "Jest", color: "#C21325" },
-  { name: "Stripe", color: "#008CDD" },
+  { name: "Postman", color: "#FF6C37" },
+  { name: "Figma", color: "#F24E1E" },
   { name: "Jira", color: "#0052CC" },
+  { name: "Notion", color: "#ffffff" },
 ];
 
 const learning = [

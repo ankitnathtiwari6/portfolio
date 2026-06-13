@@ -19,9 +19,9 @@ const experiences = [
           "Built a full-stack AI recruiter platform (React, Node.js, MongoDB) that manages the entire hiring pipeline: posting jobs, screening applicants, shortlisting candidates, dispatching AI interviews, analysing results, and presenting a final ranked shortlist — all automated.",
         technologies: ["React", "Node.js", "MongoDB", "OpenAI", "Pinecone", "Lever ATS"],
         achievements: [
-          "Integrated with Lever ATS — job postings sync live, recruiters auto-assigned the moment a requisition goes live",
-          "Built semantic search with OpenAI embeddings + Pinecone so recruiters find candidates via plain English",
-          "System proactively suggests best-matched candidates using vector similarity scoring",
+          "Architected end-to-end pipeline — from job posting to final ranked shortlist — cutting time-to-hire from ~25 days to under a week",
+          "1M+ resumes parsed to date; up to 2,000 screened per day with zero manual handoffs via Lever ATS integration",
+          "Built semantic search with OpenAI embeddings + Pinecone — reduces time-to-match by 80%, from a week to a single day",
           "Full recruiter dashboard: application volume → interview status → final shortlist in one place",
         ],
       },
@@ -29,13 +29,13 @@ const experiences = [
         title: "Voice-to-Voice AI Interview Agent",
         icon: "🎙️",
         description:
-          "Built a fully automated voice interview agent using LiveKit, TTS, STT, WebRTC, and GPT-4 that conducts real, conversational interviews with candidates at sub-500ms latency — no human needed.",
+          "Built a fully automated voice interview agent using LiveKit, TTS, STT, WebRTC, and GPT-4 that conducts real, conversational interviews at sub-400ms latency — no human needed.",
         technologies: ["LiveKit", "WebRTC", "GPT-4", "TTS/STT", "Node.js", "WebSockets"],
         achievements: [
+          "Handles up to 500 screening interviews per day, 24/7 — no recruiter involvement required",
           "Adaptive LLM pipeline generates dynamic follow-up questions based on each candidate's previous answer",
-          "Interview agent triggered automatically by AI Recruiter once a candidate is shortlisted — zero-touch pipeline",
           "Post-interview: auto-generates structured evaluation with scores, insights, strengths, red flags & hire/no-hire recommendation",
-          "Sub-500ms end-to-end voice latency in production",
+          "Sub-400ms end-to-end voice latency in production",
         ],
       },
     ],
@@ -44,7 +44,7 @@ const experiences = [
     id: "pesto",
     company: "Pesto Tech",
     logo: "PT",
-    role: "Full Stack Developer",
+    role: "Software Developer",
     period: "FEB 2022 – FEB 2025",
     color: "#a855f7",
     projects: [
@@ -118,35 +118,12 @@ const experiences = [
     role: "Software Engineer",
     period: "JUN 2019 – AUG 2021",
     color: "#f97316",
-    projects: [
-      {
-        title: "News Application",
-        icon: "📰",
-        description:
-          "Built a full-featured news platform (newsbird.live) with categorized feeds, short-form videos, and dedicated portals for users and reporters. Full MERN stack on AWS with JWT auth, RBAC, and real-time notifications. Designed all UI/UX in Figma before development.",
-        technologies: ["React", "Express", "MongoDB", "AWS S3", "JWT"],
-        achievements: ["Designed in Figma and developed end-to-end"],
-      },
-      {
-        title: "Learning Management System",
-        icon: "🧠",
-        description:
-          "LMS for seamless mentor session coordination — scheduling, live sessions, and learning material distribution.",
-        technologies: ["React", "TypeScript", "Node.js", "MongoDB", "REST APIs"],
-        achievements: [
-          "Session coordination: 2–3 days → 5–10 minutes",
-          "Doubled program team productivity",
-        ],
-      },
-      {
-        title: "Mentor Portal",
-        icon: "👨‍🏫",
-        description:
-          "Mentor management platform for session tracking, feedback collection, timesheet generation, and payment automation.",
-        technologies: ["Svelte", "Node.js", "PostgreSQL", "GraphQL"],
-        achievements: ["Session tracking and payment time reduced by 80%"],
-      },
+    description: [
+      "Built a full-featured news platform (newsbird.live) with categorized feeds, short-form video, and dedicated portals for users and reporters.",
+      "Delivered a secure, scalable MERN stack platform on AWS with real-time notifications and role-based access for both users and reporters.",
+      "Designed all UI/UX wireframes in Figma before development.",
     ],
+    technologies: ["React", "Express", "MongoDB", "AWS S3", "JWT", "Figma"],
   },
   {
     id: "ihmcl",

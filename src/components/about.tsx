@@ -9,7 +9,7 @@ const approach = [
   },
   {
     title: "Low-Latency Systems",
-    desc: "Architecting real-time voice AI with sub-500ms end-to-end latency using LiveKit, WebRTC, and streaming LLM inference.",
+    desc: "Architecting real-time voice AI with sub-400ms end-to-end latency using LiveKit, WebRTC, and streaming LLM inference.",
     color: "#22d3ee",
   },
   {
