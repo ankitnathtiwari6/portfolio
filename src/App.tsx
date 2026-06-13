@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="flex min-h-screen bg-[#020817] text-slate-200">
         <Sidebar />
         <main

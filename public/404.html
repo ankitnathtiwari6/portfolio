@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ankit Nath Tiwari</title>
+    <script>
+      // Redirect all GitHub Pages 404s back to index.html, preserving the path
+      // so React Router can handle it client-side.
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.host + '/portfolio/?p=/' +
+        l.pathname.slice('/portfolio/'.length).replace(/&/g, '~and~') +
+        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
